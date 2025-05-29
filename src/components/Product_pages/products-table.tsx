@@ -516,7 +516,7 @@ export default function ProductsTable() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.productId}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.stock}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.variants}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.price}</td>
+                      <td className="px-6 py-4 whitespace-nowrap mt-2 md:mt-0 text-sm font-medium text-gray-900">{product.price}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Menu as="div" className="relative inline-block text-left">
                           <MenuButton className="p-2 rounded-md transition-colors duration-200 text-gray-400 hover:text-gray-500 hover:bg-gray-100">
