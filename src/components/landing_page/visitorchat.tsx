@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardBody, CardHeader } from "@heroui/react";
+import { Card, CardBody } from "@heroui/react";
 import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid";
 import {
   LineChart,

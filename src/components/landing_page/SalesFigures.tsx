@@ -1,6 +1,15 @@
 "use client"
 import { Button } from "@heroui/react"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceDot } from "recharts"
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ReferenceDot,
+} from "recharts"
 
 const data = [
   { name: "Jan", Marketing: 450, Direct: 600 },
@@ -17,7 +26,7 @@ const data = [
   { name: "Dec", Marketing: 550, Direct: 580 },
 ]
 
-import type { TooltipProps } from "recharts";
+import type { TooltipProps } from "recharts"
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
   if (active && payload && payload.length && label !== undefined) {
@@ -28,21 +37,19 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>)
       </div>
     )
   }
-
   return null
 }
+
 interface CustomDotProps {
-  cx: number;
-  cy: number;
-  payload: any;
+  cx: number
+  cy: number
+  payload: { selected?: boolean }
 }
 const CustomDot = (props: CustomDotProps) => {
   const { cx, cy, payload } = props
-
   if (payload.selected) {
     return <circle cx={cx} cy={cy} r={6} fill="#6466f1" stroke="white" strokeWidth={2} />
   }
-
   return null
 }
 
@@ -50,7 +57,6 @@ export default function SalesFigures() {
   return (
     <div className="rounded-lg bg-gray-100 p-3 sm:p-6 shadow-sm w-full">
       <div className="p-2 sm:p-4 rounded-lg w-full flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
-        {/* Toggle Button */}
         <h2 className="text-black bg-gray-200 p-2 rounded-3xl text-sm sm:text-base">Sales Figures</h2>
 
         <div className="flex flex-col sm:flex-row items-start xs:items-center gap-2 xs:gap-0 w-full sm:w-auto">
@@ -77,8 +83,8 @@ export default function SalesFigures() {
             data={data}
             margin={{
               top: 5,
-              right: window.innerWidth < 640 ? 10 : 20,
-              left: window.innerWidth < 640 ? -10 : 0,
+              right: 20,
+              left: 0,
               bottom: 5,
             }}
           >
@@ -97,23 +103,23 @@ export default function SalesFigures() {
               dataKey="name"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#9ca3af", fontSize: window.innerWidth < 640 ? 10 : 12 }}
+              tick={{ fill: "#9ca3af", fontSize: 12 }}
             />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#9ca3af", fontSize: window.innerWidth < 640 ? 10 : 12 }}
+              tick={{ fill: "#9ca3af", fontSize: 12 }}
               domain={[0, 1200]}
               ticks={[0, 200, 400, 600, 800, 1000, 1200]}
-              width={window.innerWidth < 640 ? 40 : 60}
+              width={60}
             />
             <Tooltip content={CustomTooltip} />
             <Line
               type="monotone"
               dataKey="Marketing"
               stroke="#6466f1"
-              strokeWidth={window.innerWidth < 640 ? 2 : 3}
-              activeDot={{ r: window.innerWidth < 640 ? 6 : 8 }}
+              strokeWidth={3}
+              activeDot={{ r: 8 }}
               isAnimationActive={true}
               animationDuration={1000}
               connectNulls={true}
@@ -123,9 +129,9 @@ export default function SalesFigures() {
               type="monotone"
               dataKey="Direct"
               stroke="#10b981"
-              strokeWidth={window.innerWidth < 640 ? 2 : 3}
+              strokeWidth={3}
               dot={false}
-              activeDot={{ r: window.innerWidth < 640 ? 6 : 8 }}
+              activeDot={{ r: 8 }}
               isAnimationActive={true}
               animationDuration={1000}
               connectNulls={true}
@@ -138,7 +144,7 @@ export default function SalesFigures() {
                 value: "$259.0",
                 position: "top",
                 fill: "#111827",
-                fontSize: window.innerWidth < 640 ? 12 : 14,
+                fontSize: 14,
                 fontWeight: 500,
               }}
             />
