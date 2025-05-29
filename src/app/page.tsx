@@ -14,11 +14,12 @@ import OrdersTable from "@/components/Order_pages/orders-table"
 import Navbar from "@/components/navbar"
 
 interface HomeProps {
-  searchParams: { tab?: string }
+  searchParams: Promise<{ tab?: string }>
 }
 
-export default function Home({ searchParams }: HomeProps) {
-  const activeTab = searchParams.tab || "Overview"
+export default async function Home({ searchParams }: HomeProps) {
+  const params = await searchParams
+  const activeTab = params.tab || "Overview"
 
   return (
     <>
@@ -104,11 +105,11 @@ export default function Home({ searchParams }: HomeProps) {
           )}
           {activeTab === "Order" && (
             <div className="space-y-4 sm:space-y-6">
-              <OrdersTable 
-                searchQuery={""} 
+              <OrdersTable
+                searchQuery={""}
                 onToggleSelection={() => {
                   console.log("Toggle selection")
-                }} 
+                }}
               />
             </div>
           )}
