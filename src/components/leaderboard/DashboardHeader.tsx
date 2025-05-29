@@ -3,13 +3,13 @@
 import { 
   Card, 
   CardBody, 
-  Button, 
-  Avatar, 
+  Button,  
   Select,
   SelectItem,
   Chip
 } from '@heroui/react'
 import { MessageCircle } from 'lucide-react'
+import Image from 'next/image'
 
 
 // Mock data for the user cards
@@ -89,11 +89,13 @@ export default function DashboardHeader() {
               <CardBody className="p-6 text-center">
                 {/* Avatar */}
                 <div className="flex justify-center mb-4">
-                  <Avatar
+                  <Image
                     src={user.avatar}
                     alt={`${user.name} avatar`}
-                    className="w-16 h-16 border-3 border-gray-100"
-                    isBordered
+                    width={64}
+                    height={64} 
+                    className="w-16 h-16 border-3 rounded-full border-gray-100"
+                    
                   />
                 </div>
 

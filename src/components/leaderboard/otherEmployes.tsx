@@ -6,12 +6,12 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Avatar,
   Button,
   Card,
   CardBody,
 } from "@heroui/react"
 import { MoreVertical } from "lucide-react"
+import Image from "next/image"
 
 // Sample employee data
 const employees = [
@@ -120,11 +120,12 @@ export default function OtherEmployes() {
                     <TableRow key={employee.id} className="hover:bg-gray-50 transition-colors">
                       <TableCell className="px-2 sm:px-4">
                         <div className="flex items-center gap-2 sm:gap-3">
-                          <Avatar
-                            src={employee.avatar}
+                          <Image
+                            src={"/user.jpg"}
                             alt={employee.name}
-                            size="sm"
-                            className="w-7 h-7 sm:w-9 sm:h-9 flex-shrink-0"
+                            width={28}
+                            height={28}
+                            className="w-7 h-7 sm:w-9 sm:h-9 flex-shrink-0 rounded-full"
                           />
                           <div className="flex flex-col min-w-0">
                             <span className="text-xs sm:text-sm font-medium text-gray-900 truncate">

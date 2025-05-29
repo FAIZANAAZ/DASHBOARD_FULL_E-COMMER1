@@ -1,4 +1,5 @@
-import { Card, CardBody, Progress, Avatar, Chip } from "@heroui/react"
+import { Card, CardBody, Progress, Chip } from "@heroui/react"
+import Image from "next/image"
 
 interface MetricCardProps {
   title: string
@@ -59,7 +60,7 @@ interface ActivityItemProps {
 function ActivityItem({ name, action, avatar }: ActivityItemProps) {
   return (
     <div className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 hover:bg-gray-50 rounded-lg">
-      <Avatar src={avatar} size="sm" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
+      <Image alt="avatar" src={"/user.jpg"} width={40} height={40} className="w-6 rounded-full h-6 sm:w-8 sm:h-8 flex-shrink-0" />
       <div className="flex-1 min-w-0">
         <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">{name}</p>
         <p className="text-xs text-gray-500 truncate">{action}</p>
