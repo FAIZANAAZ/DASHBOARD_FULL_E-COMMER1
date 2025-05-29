@@ -15,11 +15,14 @@ import Leaderboard from "@/components/leaderboard/leader"
 import Sidebar from "@/components/landing_page/Sidebar"
 import ProductsTable from "@/components/Product_pages/products-table"
 import OrdersTable from "@/components/Order_pages/orders-table" // <-- Apne path ke mutabiq change kar den
+import Navbar from "@/components/navbar"
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Overview") // Default tab
 
   return (
+    <>
+    <Navbar  />
     <div className="flex min-h-screen">
       {/* Sidebar */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -101,12 +104,13 @@ export default function Home() {
         )}
         {activeTab === "Order" && (
           <div className="space-y-4 sm:space-y-6">
-            <OrdersTable searchQuery={""} onToggleSelection={function (orderId: string): void {
+            <OrdersTable searchQuery={""} onToggleSelection={function (): void {
               throw new Error("Function not implemented.")
             } } /> {/* Yahan OrdersTable render ho raha hai */}
           </div>
         )}
       </main>
     </div>
+    </>
   )
 }
