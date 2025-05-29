@@ -16,7 +16,6 @@ import {
 import NewProductModal from "./newproduct"
 import OrderDetailsModal from "../Order_pages/order-details-modal"
 
-
 interface Product {
   id: string
   name: string
@@ -323,16 +322,16 @@ export default function ProductsTable() {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6">
         {/* Header Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
             {/* Show Filter */}
             <div className="flex items-center space-x-2 border-none">
-              <span className="text-sm font-medium text-gray-700">Show:</span>
+              <span className="text-sm font-medium text-gray-700 whitespace-nowrap">Show:</span>
               <Listbox value={selectedFilter} onChange={handleFilterChange}>
                 <div className="relative">
-                  <ListboxButton className="relative w-40 cursor-pointer rounded-md py-2 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm transition-colors duration-200 bg-gray-50 text-gray-900 ring-gray-300">
+                  <ListboxButton className="relative w-full sm:w-40 cursor-pointer rounded-md py-2 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm transition-colors duration-200 bg-gray-50 text-gray-900 ring-gray-300">
                     <span className="block truncate">{selectedFilter}</span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                       <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -354,58 +353,60 @@ export default function ProductsTable() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:items-center sm:space-x-3">
             {/* New Product Button */}
             <button
               onClick={() => setIsNewProductModalOpen(true)}
-              className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+              className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 w-full sm:w-auto"
             >
               <PlusIcon className="h-4 w-4 mr-2" />
               New Product
             </button>
 
-            <button className="bg-gray-100 p-2 sm:p-3 md:p-4 rounded-2xl w-fit hover:bg-gray-200 transition-colors">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z"
-                />
-              </svg>
-            </button>
+            <div className="flex items-center space-x-3">
+              <button className="bg-gray-100 p-2 sm:p-3 rounded-2xl hover:bg-gray-200 transition-colors flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z"
+                  />
+                </svg>
+              </button>
 
-            {/* Sort By */}
-            <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium text-gray-700">Sort by:</span>
-
-              <Listbox value={sortBy} onChange={setSortBy}>
-                <div className="relative">
-                  <ListboxButton className="relative w-32 cursor-pointer rounded-md py-2 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm transition-colors duration-200 bg-gray-50 text-gray-900 ring-gray-300">
-                    <span className="block truncate">{sortBy}</span>
-                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                      <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                    </span>
-                  </ListboxButton>
-                  <ListboxOptions className="absolute right-0 z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm bg-white">
-                    {sortOptions.map((option) => (
-                      <ListboxOption
-                        key={option}
-                        value={option}
-                        className="relative cursor-pointer select-none py-2 pl-3 pr-9 transition-colors duration-200 text-gray-900 hover:bg-gray-100"
-                      >
-                        <span className="block truncate">{option}</span>
-                      </ListboxOption>
-                    ))}
-                  </ListboxOptions>
-                </div>
-              </Listbox>
+              {/* Sort By */}
+              <div className="flex items-center space-x-2 min-w-0">
+                <span className="text-sm font-medium text-gray-700 whitespace-nowrap hidden sm:block">Sort by:</span>
+                <span className="text-sm font-medium text-gray-700 whitespace-nowrap sm:hidden">Sort:</span>
+                <Listbox value={sortBy} onChange={setSortBy}>
+                  <div className="relative">
+                    <ListboxButton className="relative w-full sm:w-32 cursor-pointer rounded-md py-2 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm transition-colors duration-200 bg-gray-50 text-gray-900 ring-gray-300">
+                      <span className="block truncate">{sortBy}</span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                      </span>
+                    </ListboxButton>
+                    <ListboxOptions className="absolute right-0 z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm bg-white">
+                      {sortOptions.map((option) => (
+                        <ListboxOption
+                          key={option}
+                          value={option}
+                          className="relative cursor-pointer select-none py-2 pl-3 pr-9 transition-colors duration-200 text-gray-900 hover:bg-gray-100"
+                        >
+                          <span className="block truncate">{option}</span>
+                        </ListboxOption>
+                      ))}
+                    </ListboxOptions>
+                  </div>
+                </Listbox>
+              </div>
             </div>
           </div>
         </div>
@@ -413,9 +414,9 @@ export default function ProductsTable() {
         {/* Conditional Content Based on Current View */}
         {currentView === "products" ? (
           /* Products Table */
-          <div className="shadow px-2 pt-4 ring-opacity-5 rounded-lg overflow-hidden bg-white">
+          <div className="shadow px-2 pt-4 ring-opacity-5 rounded-lg overflow-hidden bg-white overflow-x-auto">
             {/* Search Bar */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-6">
+            <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3 mb-6">
               <div className="flex-1 relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
@@ -429,13 +430,13 @@ export default function ProductsTable() {
                 />
               </div>
 
-              <button className="px-6 py-3 rounded-full text-sm font-medium transition-colors duration-200 border-gray-300 text-gray-700 hover:bg-gray-100 bg-gray-50">
+              <button className="px-6 py-3 rounded-full text-sm font-medium transition-colors duration-200 border-gray-300 text-gray-700 hover:bg-gray-100 bg-gray-50 w-full sm:w-auto">
                 Action
               </button>
             </div>
 
             {/* Desktop Table */}
-            <div className="hidden lg:block">
+            <div className="hidden md:block">
               <table className="min-w-full divide-y divide-gray-100">
                 <thead className="bg-gray-50">
                   <tr>
@@ -556,8 +557,8 @@ export default function ProductsTable() {
             </div>
 
             {/* Mobile Cards for Products */}
-            <div className="lg:hidden">
-              <div className="space-y-4 p-4">
+            <div className="md:hidden">
+              <div className="space-y-3 p-3 sm:p-4 sm:space-y-4">
                 {filteredProducts.map((product) => (
                   <div
                     key={product.id}
@@ -633,9 +634,9 @@ export default function ProductsTable() {
           </div>
         ) : (
           /* Orders Table */
-          <div className="shadow ring-1 ring-black ring-opacity-5 rounded-lg overflow-hidden bg-white">
+          <div className="shadow ring-1 ring-black ring-opacity-5 rounded-lg overflow-hidden bg-white overflow-x-auto">
             {/* Desktop Table */}
-            <div className="hidden lg:block">
+            <div className="hidden md:block">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
@@ -759,8 +760,8 @@ export default function ProductsTable() {
             </div>
 
             {/* Mobile Cards for Orders */}
-            <div className="lg:hidden">
-              <div className="space-y-4 p-4">
+            <div className="md:hidden">
+              <div className="space-y-3 p-3 sm:p-4 sm:space-y-4">
                 {filteredOrders.map((order) => (
                   <div
                     key={order.id}
@@ -843,8 +844,8 @@ export default function ProductsTable() {
         )}
 
         {/* Results Summary */}
-        <div className="mt-4 flex items-center justify-between">
-          <p className="text-sm text-gray-700">
+        <div className="mt-4 flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:items-center sm:justify-between">
+          <p className="text-sm text-gray-700 text-center sm:text-left">
             {currentView === "products"
               ? `Showing ${filteredProducts.length} of ${products.length} products`
               : `Showing ${filteredOrders.length} of ${orders.length} orders`}

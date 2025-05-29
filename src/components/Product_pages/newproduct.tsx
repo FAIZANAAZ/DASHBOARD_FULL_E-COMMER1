@@ -121,7 +121,7 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="w-[85%] max-w-sm transform rounded-xl p-0 text-left align-middle shadow-xl transition-all bg-white">
+            <Dialog.Panel className="w-[95%] max-w-sm sm:w-[85%] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl transform rounded-xl p-0 text-left align-middle shadow-xl transition-all bg-white">
               <Tab.Group selectedIndex={selectedTab} onChange={setSelectedTab}>
                 {({ selectedIndex }) => (
                   <>
@@ -132,43 +132,60 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                           <Tab
                             key={tab}
                             className={({ selected }) =>
-                              `w-full py-2 px-3 text-xs font-medium leading-4 transition-colors duration-200 focus:outline-none ${
+                              `w-full py-2 px-1 sm:px-3 text-[10px] sm:text-xs font-medium leading-4 transition-colors duration-200 focus:outline-none ${
                                 selected
                                   ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50"
                                   : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
                               }`
                             }
                           >
-                            {tab}
+                            <span className="hidden sm:inline">{tab}</span>
+                            <span className="sm:hidden">
+                              {tab === "Information"
+                                ? "Info"
+                                : tab === "Images"
+                                  ? "Img"
+                                  : tab === "Pricing"
+                                    ? "Price"
+                                    : tab === "Inventory"
+                                      ? "Inv"
+                                      : tab === "Shipping"
+                                        ? "Ship"
+                                        : tab}
+                            </span>
                           </Tab>
                         ))}
                       </Tab.List>
                     </div>
 
                     {/* Modal Content */}
-                    <div className="p-3">
+                    <div className="p-2 sm:p-3">
                       <Tab.Panels>
                         {/* Information Tab */}
                         <Tab.Panel className="space-y-3">
                           <div>
-                            <h3 className="text-base font-medium mb-3 text-gray-900">Information</h3>
+                            <h3 className="text-sm sm:text-base font-medium mb-3 text-gray-900">Information</h3>
 
                             {/* Product Name */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">Product Name</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                Product Name
+                              </label>
                               <input
                                 type="text"
                                 value={productName}
                                 onChange={(e) => setProductName(e.target.value)}
-                                className="w-full px-2 py-1 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900 placeholder-gray-500"
+                                className="w-full px-2 py-1 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900 placeholder-gray-500"
                               />
                             </div>
 
                             {/* Description */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">DESCRIPTION</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                DESCRIPTION
+                              </label>
                               <div className="border rounded-md border-gray-300 bg-white">
-                                <div className="flex items-center space-x-1 p-1 border-b border-gray-200">
+                                <div className="flex items-center space-x-0.5 sm:space-x-1 p-1 border-b border-gray-200">
                                   <button type="button" className="p-1 rounded hover:bg-gray-100 text-gray-600">
                                     <span className="font-bold text-xs">H</span>
                                   </button>
@@ -204,7 +221,9 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
 
                             {/* Brand */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">Brand</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                Brand
+                              </label>
                               <Listbox value={selectedBrand} onChange={setSelectedBrand}>
                                 <div className="relative">
                                   <ListboxButton className="relative w-full cursor-pointer rounded-md py-1 pl-2 pr-8 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 bg-white text-gray-900 ring-gray-300">
@@ -230,7 +249,9 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
 
                             {/* Category */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">Category</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                Category
+                              </label>
                               <Listbox value={selectedCategory} onChange={setSelectedCategory}>
                                 <div className="relative">
                                   <ListboxButton className="relative w-full cursor-pointer rounded-md py-1 pl-2 pr-8 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 bg-white text-gray-900 ring-gray-300">
@@ -256,7 +277,9 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
 
                             {/* Tags */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">TAGS</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                TAGS
+                              </label>
                               <div className="flex flex-wrap gap-1">
                                 {tags.map((tag) => (
                                   <span
@@ -281,19 +304,19 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                         {/* Images Tab */}
                         <Tab.Panel className="space-y-3">
                           <div>
-                            <h3 className="text-base font-medium mb-3 text-gray-900">Images</h3>
+                            <h3 className="text-sm sm:text-base font-medium mb-3 text-gray-900">Images</h3>
 
                             {/* Upload Area */}
                             <div className="border-2 border-dashed rounded-lg p-6 text-center mb-4 border-gray-300 bg-gray-50">
                               <CloudArrowUpIcon className="mx-auto h-8 w-8 mb-2 text-gray-400" />
-                              <p className="text-xs text-gray-500">
+                              <p className="text-[10px] sm:text-xs text-gray-500">
                                 Drag and Drop or <span className="text-blue-600 cursor-pointer">Browse</span> to upload
                               </p>
                             </div>
 
                             {/* Images Table */}
                             <div className="space-y-2">
-                              <div className="grid grid-cols-4 gap-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <div className="grid grid-cols-4 gap-1 sm:gap-2 text-[10px] sm:text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 <div>IMAGE</div>
                                 <div>POSITION</div>
                                 <div>COVER</div>
@@ -303,7 +326,7 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                               {images.map((image) => (
                                 <div
                                   key={image.id}
-                                  className="grid grid-cols-4 gap-2 items-center py-2 border-b border-gray-200"
+                                  className="grid grid-cols-4 gap-1 sm:gap-2 items-center py-2 border-b border-gray-200"
                                 >
                                   <div>
                                     <Image
@@ -352,39 +375,45 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                         {/* Pricing Tab */}
                         <Tab.Panel className="space-y-3">
                           <div>
-                            <h3 className="text-base font-medium mb-3 text-gray-900">Pricing</h3>
+                            <h3 className="text-sm sm:text-base font-medium mb-3 text-gray-900">Pricing</h3>
 
                             {/* Tax Excluded Price */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">Tax Excluded Price</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                Tax Excluded Price
+                              </label>
                               <div className="relative">
                                 <span className="absolute left-2 top-1 text-sm text-gray-500">$</span>
                                 <input
                                   type="text"
                                   value={taxExcludedPrice}
                                   onChange={(e) => setTaxExcludedPrice(e.target.value)}
-                                  className="w-full pl-6 pr-2 py-1 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                  className="w-full pl-6 pr-2 py-1 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                 />
                               </div>
                             </div>
 
                             {/* Tax Included Price */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">Tax Included Price</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                Tax Included Price
+                              </label>
                               <div className="relative">
                                 <span className="absolute left-2 top-1 text-sm text-gray-500">$</span>
                                 <input
                                   type="text"
                                   value={taxIncludedPrice}
                                   onChange={(e) => setTaxIncludedPrice(e.target.value)}
-                                  className="w-full pl-6 pr-2 py-1 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                  className="w-full pl-6 pr-2 py-1 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                 />
                               </div>
                             </div>
 
                             {/* Tax Rule */}
                             <div className="mb-3">
-                              <label className="block text-xs font-medium mb-1 text-gray-700">Tax Rule</label>
+                              <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                Tax Rule
+                              </label>
                               <Listbox value={selectedTaxRule} onChange={setSelectedTaxRule}>
                                 <div className="relative">
                                   <ListboxButton className="relative w-full cursor-pointer rounded-md py-1 pl-2 pr-8 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 bg-white text-gray-900 ring-gray-300">
@@ -409,21 +438,25 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                             </div>
 
                             {/* Unit Price and Per */}
-                            <div className="grid grid-cols-2 gap-2 mb-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">Unit Price</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  Unit Price
+                                </label>
                                 <div className="relative">
                                   <span className="absolute left-2 top-1 text-sm text-gray-500">$</span>
                                   <input
                                     type="text"
                                     value={unitPrice}
                                     onChange={(e) => setUnitPrice(e.target.value)}
-                                    className="w-full pl-6 pr-2 py-1 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                    className="w-full pl-6 pr-2 py-1 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                   />
                                 </div>
                               </div>
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">Per</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  Per
+                                </label>
                                 <Listbox value={selectedPer} onChange={setSelectedPer}>
                                   <div className="relative">
                                     <ListboxButton className="relative w-full cursor-pointer rounded-md py-1 pl-2 pr-8 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 bg-white text-gray-900 ring-gray-300">
@@ -453,27 +486,31 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                         {/* Inventory Tab */}
                         <Tab.Panel className="space-y-3">
                           <div>
-                            <h3 className="text-base font-medium mb-3 text-gray-900">Inventory</h3>
+                            <h3 className="text-sm sm:text-base font-medium mb-3 text-gray-900">Inventory</h3>
 
                             {/* SKU and Quantity */}
-                            <div className="grid grid-cols-2 gap-4 mb-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-3">
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">SKU</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  SKU
+                                </label>
                                 <input
                                   type="text"
                                   value={sku}
                                   onChange={(e) => setSku(e.target.value)}
-                                  className="w-full px-2 py-1 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                  className="w-full px-2 py-1 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                 />
                               </div>
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">Quantity</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  Quantity
+                                </label>
                                 <div className="relative">
                                   <input
                                     type="number"
                                     value={quantity}
                                     onChange={(e) => setQuantity(Number.parseInt(e.target.value) || 0)}
-                                    className="w-full px-2 py-1 pr-8 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                    className="w-full px-2 py-1 pr-8 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                   />
                                   <div className="absolute right-1 top-0 flex flex-col">
                                     <button
@@ -500,57 +537,65 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                         {/* Shipping Tab */}
                         <Tab.Panel className="space-y-3">
                           <div>
-                            <h3 className="text-base font-medium mb-3 text-gray-900">Shipping</h3>
+                            <h3 className="text-sm sm:text-base font-medium mb-3 text-gray-900">Shipping</h3>
 
                             {/* Dimensions */}
-                            <div className="grid grid-cols-2 gap-2 mb-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">Width</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  Width
+                                </label>
                                 <div className="relative">
                                   <input
                                     type="text"
                                     value={width}
                                     onChange={(e) => setWidth(e.target.value)}
-                                    className="w-full px-2 py-1 pr-8 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                    className="w-full px-2 py-1 pr-8 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                   />
                                   <span className="absolute right-2 top-1 text-xs text-gray-500">cm</span>
                                 </div>
                               </div>
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">Height</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  Height
+                                </label>
                                 <div className="relative">
                                   <input
                                     type="text"
                                     value={height}
                                     onChange={(e) => setHeight(e.target.value)}
-                                    className="w-full px-2 py-1 pr-8 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                    className="w-full px-2 py-1 pr-8 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                   />
                                   <span className="absolute right-2 top-1 text-xs text-gray-500">cm</span>
                                 </div>
                               </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-2 mb-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">Depth</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  Depth
+                                </label>
                                 <div className="relative">
                                   <input
                                     type="text"
                                     value={depth}
                                     onChange={(e) => setDepth(e.target.value)}
-                                    className="w-full px-2 py-1 pr-8 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                    className="w-full px-2 py-1 pr-8 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                   />
                                   <span className="absolute right-2 top-1 text-xs text-gray-500">cm</span>
                                 </div>
                               </div>
                               <div>
-                                <label className="block text-xs font-medium mb-1 text-gray-700">Weight</label>
+                                <label className="block text-[10px] sm:text-xs font-medium mb-1 text-gray-700">
+                                  Weight
+                                </label>
                                 <div className="relative">
                                   <input
                                     type="text"
                                     value={weight}
                                     onChange={(e) => setWeight(e.target.value)}
-                                    className="w-full px-2 py-1 pr-8 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
+                                    className="w-full px-2 py-1 pr-8 text-xs sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white border-gray-300 text-gray-900"
                                   />
                                   <span className="absolute right-2 top-1 text-xs text-gray-500">kg</span>
                                 </div>
@@ -562,11 +607,11 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                     </div>
 
                     {/* Modal Footer */}
-                    <div className="flex items-center justify-end space-x-2 px-3 py-2 border-t border-gray-200 bg-gray-50">
+                    <div className="flex items-center justify-end space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 border-t border-gray-200 bg-gray-50">
                       <button
                         type="button"
                         onClick={onClose}
-                        className="px-3 py-1 text-xs font-medium rounded-md transition-colors duration-200 text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-300"
+                        className="px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-medium rounded-md transition-colors duration-200 text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-300"
                       >
                         Cancel
                       </button>
@@ -593,7 +638,7 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
                             onClose()
                           }
                         }}
-                        className="px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
+                        className="px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
                       >
                         {selectedIndex < tabs.length - 1 ? "Next" : "Save Product"}
                       </button>
