@@ -60,7 +60,7 @@ export default function ProductsTable() {
       stock: 50,
       variants: 10,
       price: "$14.90",
-      image: "/t1.jfif",
+      image: "/t1.jpg",
       selected: false,
     },
     {
@@ -71,7 +71,7 @@ export default function ProductsTable() {
       stock: 120,
       variants: 2,
       price: "$35.90",
-      image: "/t2.jfif",
+      image: "/t2.jpg",
       selected: true,
     },
     {
@@ -82,7 +82,7 @@ export default function ProductsTable() {
       stock: 26,
       variants: 4,
       price: "$7.99",
-      image: "/t3.jfif",
+      image: "/t3.jpg",
       selected: false,
     },
     {
@@ -93,7 +93,7 @@ export default function ProductsTable() {
       stock: 87,
       variants: 6,
       price: "$50.00",
-      image: "/t4.jfif",
+      image: "/t4.jpg",
       selected: false,
     },
     {
@@ -104,7 +104,7 @@ export default function ProductsTable() {
       stock: 96,
       variants: 11,
       price: "$35.90",
-      image: "/t5.jfif",
+      image: "/t5.jpg",
       selected: true,
     },
     {
@@ -115,7 +115,7 @@ export default function ProductsTable() {
       stock: 32,
       variants: 1,
       price: "$15.99",
-      image: "/t6.jfif",
+      image: "/t6.jpg",
       selected: false,
     },
     {
@@ -126,7 +126,7 @@ export default function ProductsTable() {
       stock: 14,
       variants: 5,
       price: "$12.99",
-      image: "/t1.jfif",
+      image: "/t1.jpg",
       selected: false,
     },
   ])

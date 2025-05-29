@@ -93,7 +93,7 @@ export default function Navbar() {
                 <span className="sr-only">Open user menu</span>
                 <Image
                   className="h-7 w-7 sm:h-8 sm:w-8 rounded-full"
-                  src="/placeholder.svg?height=32&width=32"
+                  src="/user.jpg"
                   alt="User avatar"
                   width={32}
                   height={32}
