@@ -17,8 +17,10 @@ const data = [
   { name: "Dec", Marketing: 550, Direct: 580 },
 ]
 
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
+import type { TooltipProps } from "recharts";
+
+const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+  if (active && payload && payload.length && label !== undefined) {
     return (
       <div className="rounded bg-white p-3 shadow-md">
         <p className="mb-1 text-sm font-medium text-gray-500">{label}</p>
@@ -29,8 +31,12 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
   return null
 }
-
-const CustomDot = (props: any) => {
+interface CustomDotProps {
+  cx: number;
+  cy: number;
+  payload: any;
+}
+const CustomDot = (props: CustomDotProps) => {
   const { cx, cy, payload } = props
 
   if (payload.selected) {
@@ -101,7 +107,7 @@ export default function SalesFigures() {
               ticks={[0, 200, 400, 600, 800, 1000, 1200]}
               width={window.innerWidth < 640 ? 40 : 60}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={CustomTooltip} />
             <Line
               type="monotone"
               dataKey="Marketing"
@@ -111,7 +117,7 @@ export default function SalesFigures() {
               isAnimationActive={true}
               animationDuration={1000}
               connectNulls={true}
-              dot={<CustomDot />}
+              dot={(props) => <CustomDot {...props} />}
             />
             <Line
               type="monotone"

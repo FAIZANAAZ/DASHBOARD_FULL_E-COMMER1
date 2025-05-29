@@ -6,7 +6,7 @@ interface MetricCardProps {
   subtitle: string
 }
 
-function MetricCard({ title, value, subtitle }: MetricCardProps) {
+function MetricCard({  value, subtitle }: MetricCardProps) {
   return (
     <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
       <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{value}</div>

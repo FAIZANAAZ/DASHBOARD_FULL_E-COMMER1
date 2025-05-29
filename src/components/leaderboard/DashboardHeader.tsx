@@ -9,8 +9,8 @@ import {
   SelectItem,
   Chip
 } from '@heroui/react'
-import { MessageCircle, ChevronDown } from 'lucide-react'
-import Image from 'next/image'
+import { MessageCircle } from 'lucide-react'
+
 
 // Mock data for the user cards
 const userData = [

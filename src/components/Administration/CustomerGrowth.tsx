@@ -1,8 +1,7 @@
 "use client";
 
-import { ArrowTrendingUpIcon, ArrowTrendingDownIcon } from "@heroicons/react/24/solid";
 import { ResponsiveContainer, RadialBarChart, RadialBar, Cell, PolarAngleAxis } from "recharts";
-import { Card, CardBody, CardHeader, Chip, Select, SelectItem } from "@heroui/react";
+import { Card, CardBody, CardHeader, Select, SelectItem } from "@heroui/react";
 import { useState } from "react";
 
 export function CustomerGrowth() {

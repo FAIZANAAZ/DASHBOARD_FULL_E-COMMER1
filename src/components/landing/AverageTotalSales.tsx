@@ -11,7 +11,7 @@ const salesData = [
 function CircularProgressReplacement({
   percentage,
   color,
-  bgColor,
+  
 }: {
   percentage: number
   color: string

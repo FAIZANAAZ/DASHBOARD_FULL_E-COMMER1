@@ -4,12 +4,7 @@ import { Card, CardBody, CardHeader, Button, Chip } from "@heroui/react"
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 
-const customers = [
-  { name: "Seth Daniels", email: "@sethdaniels", image: "/user.jpg", status: "paid" },
-  { name: "Myrtle Perkins", email: "@myrtleperkins", image: "/user.jpg", status: "paid" },
-  { name: "Dominic Baker", email: "@dominicbaker", image: "/user.jpg", status: "pending" },
-  { name: "Ollie Baldwin", email: "@olliebaldwin", image: "/user.jpg", status: "paid" },
-]
+
 
 const transactions = [
   {
