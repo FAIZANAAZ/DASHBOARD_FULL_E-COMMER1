@@ -57,7 +57,7 @@ interface ActivityItemProps {
   avatar: string
 }
 
-function ActivityItem({ name, action, avatar }: ActivityItemProps) {
+function ActivityItem({ name, action }: ActivityItemProps) {
   return (
     <div className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 hover:bg-gray-50 rounded-lg">
       <Image alt="avatar" src={"/user.jpg"} width={40} height={40} className="w-6 rounded-full h-6 sm:w-8 sm:h-8 flex-shrink-0" />

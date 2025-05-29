@@ -56,8 +56,7 @@ const MiniChart = ({ data, trend }: { data: number[]; trend: string }) => {
   const minValue = Math.min(...data)
   const range = maxValue - minValue || 1
 
-  const points = data
-    .map((value, index) => {
+  const points = data.map((value, index) => {
       const x = (index / (data.length - 1)) * 60
       const y = 20 - ((value - minValue) / range) * 15
       return `${x},${y}`
