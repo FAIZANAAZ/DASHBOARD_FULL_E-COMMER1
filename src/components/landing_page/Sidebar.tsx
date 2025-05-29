@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button, Card, CardBody } from "@heroui/react"
 import {
   HomeIcon,
@@ -29,30 +30,35 @@ const teamItems = [
   { icon: QuestionMarkCircleIcon, label: "Support" },
 ]
 
-export default function Sidebar({
-  activeTab,
-  setActiveTab,
-}: { activeTab: string; setActiveTab: (tab: string) => void }) {
-  const [salesSubMenuOpen, setSalesSubMenuOpen] = useState(false)
+export default function Sidebar({ activeTab }: { activeTab: string }) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const [salesSubMenuOpen, setSalesSubMenuOpen] = useState(["Sales", "Product", "Order"].includes(activeTab))
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [iconSidebarVisible, setIconSidebarVisible] = useState(true)
 
   // Sales tab active rahe agar activeTab "Sales", "Product" ya "Order" ho
   const isSalesTabActive = ["Sales", "Product", "Order"].includes(activeTab)
 
+  const navigateToTab = (tab: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set("tab", tab)
+    router.push(`/?${params.toString()}`)
+  }
+
   const handleMainTabClick = (label: string) => {
     if (label === "Sales") {
       setSalesSubMenuOpen((prev) => !prev)
-      setActiveTab("Sales")
+      navigateToTab("Sales")
     } else {
       setSalesSubMenuOpen(false)
-      setActiveTab(label)
+      navigateToTab(label)
     }
     setMobileMenuOpen(false)
   }
 
   const handleSalesSubTabClick = (label: string) => {
-    setActiveTab(label) // "Product" ya "Order"
+    navigateToTab(label) // "Product" ya "Order"
     setMobileMenuOpen(false)
     setSalesSubMenuOpen(true) // submenu khula rahe
   }
@@ -134,7 +140,7 @@ export default function Sidebar({
                 key={item.label}
                 variant="light"
                 className="w-full h-12 p-0 flex items-center justify-center text-gray-600 hover:bg-gray-50 relative min-w-12"
-                onClick={() => setActiveTab(item.label)}
+                onClick={() => navigateToTab(item.label)}
               >
                 <item.icon className="w-5 h-5" />
                 {item.hasNotification && <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></div>}
@@ -198,7 +204,7 @@ export default function Sidebar({
                   key={item.label}
                   variant="light"
                   className="w-full flex justify-start items-center gap-2 text-gray-600 hover:bg-gray-50 relative min-h-10"
-                  onClick={() => setActiveTab(item.label)}
+                  onClick={() => navigateToTab(item.label)}
                 >
                   <item.icon className="w-4 h-4 flex-shrink-0" />
                   <span className="truncate">{item.label}</span>
