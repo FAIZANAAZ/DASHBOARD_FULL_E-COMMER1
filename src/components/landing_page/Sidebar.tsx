@@ -12,8 +12,7 @@ import {
   ClockIcon,
   ChatBubbleLeftIcon,
   QuestionMarkCircleIcon,
-  Bars3Icon,
-  XMarkIcon,
+  ChevronRightIcon,
 } from "@heroicons/react/24/outline"
 
 const menuItemsData = [
@@ -35,7 +34,6 @@ export default function Sidebar({ activeTab }: { activeTab: string }) {
   const searchParams = useSearchParams()
   const [salesSubMenuOpen, setSalesSubMenuOpen] = useState(["Sales", "Product", "Order"].includes(activeTab))
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [iconSidebarVisible, setIconSidebarVisible] = useState(true)
 
   // Sales tab active rahe agar activeTab "Sales", "Product" ya "Order" ho
   const isSalesTabActive = ["Sales", "Product", "Order"].includes(activeTab)
@@ -44,6 +42,8 @@ export default function Sidebar({ activeTab }: { activeTab: string }) {
     const params = new URLSearchParams(searchParams.toString())
     params.set("tab", tab)
     router.push(`/?${params.toString()}`)
+    // Auto close sidebar when any tab is clicked
+    setMobileMenuOpen(false)
   }
 
   const handleMainTabClick = (label: string) => {
@@ -54,41 +54,26 @@ export default function Sidebar({ activeTab }: { activeTab: string }) {
       setSalesSubMenuOpen(false)
       navigateToTab(label)
     }
-    setMobileMenuOpen(false)
   }
 
   const handleSalesSubTabClick = (label: string) => {
     navigateToTab(label) // "Product" ya "Order"
-    setMobileMenuOpen(false)
     setSalesSubMenuOpen(true) // submenu khula rahe
   }
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen)
-    if (!mobileMenuOpen) {
-      setIconSidebarVisible(true)
-    }
-  }
-
-  const closeIconSidebar = () => {
-    setIconSidebarVisible(false)
   }
 
   return (
     <>
-      {/* Mobile Menu Toggle Button */}
+      {/* Mobile Menu Toggle Button - Only Arrow */}
       <Button
         variant="light"
         className="fixed left-4 top-4 z-[60] sm:hidden bg-white border border-gray-200 shadow-sm min-w-10 h-10 p-0"
-        onClick={() => {
-          if (!iconSidebarVisible) {
-            setIconSidebarVisible(true)
-          } else {
-            toggleMobileMenu()
-          }
-        }}
+        onClick={toggleMobileMenu}
       >
-        {mobileMenuOpen ? <XMarkIcon className="w-5 h-5" /> : <Bars3Icon className="w-5 h-5" />}
+        <ChevronRightIcon className={`w-5 h-5 transition-transform ${mobileMenuOpen ? "rotate-180" : ""}`} />
       </Button>
 
       {/* Mobile Overlay */}
@@ -98,57 +83,6 @@ export default function Sidebar({ activeTab }: { activeTab: string }) {
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
-
-      {/* Icon-only Sidebar for Mobile */}
-      <aside
-        className={`fixed left-0 top-16 h-[calc(100vh-4rem)] w-16 bg-white border-r border-gray-200 p-2 z-[50] sm:hidden transition-all duration-300 ${
-          mobileMenuOpen || !iconSidebarVisible ? "-translate-x-full opacity-0" : "translate-x-0 opacity-100"
-        }`}
-      >
-        <div className="space-y-2">
-          {/* Close button for icon sidebar */}
-          <Button
-            variant="light"
-            className="w-full h-8 p-0 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-50 mb-2 min-w-8"
-            onClick={closeIconSidebar}
-          >
-            <XMarkIcon className="w-4 h-4" />
-          </Button>
-
-          {/* Main Navigation Icons */}
-          <nav className="space-y-1">
-            {menuItemsData.map((item) => (
-              <Button
-                key={item.label}
-                variant={activeTab === item.label || (item.label === "Sales" && isSalesTabActive) ? "flat" : "light"}
-                className={`w-full h-12 p-0 flex items-center justify-center min-w-12 ${
-                  activeTab === item.label || (item.label === "Sales" && isSalesTabActive)
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-600 hover:bg-gray-50 bg-gray-100"
-                }`}
-                onClick={() => handleMainTabClick(item.label)}
-              >
-                <item.icon className="w-5 h-5" />
-              </Button>
-            ))}
-          </nav>
-
-          {/* Teams Section Icons */}
-          <div className="pt-4 border-t border-gray-200">
-            {teamItems.map((item) => (
-              <Button
-                key={item.label}
-                variant="light"
-                className="w-full h-12 p-0 flex items-center justify-center text-gray-600 hover:bg-gray-50 relative min-w-12"
-                onClick={() => navigateToTab(item.label)}
-              >
-                <item.icon className="w-5 h-5" />
-                {item.hasNotification && <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></div>}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </aside>
 
       {/* Full Sidebar for Mobile (open) and Desktop */}
       <aside

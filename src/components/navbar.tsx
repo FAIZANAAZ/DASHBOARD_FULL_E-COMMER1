@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import {
   MagnifyingGlassIcon,
@@ -8,13 +9,15 @@ import {
   RocketLaunchIcon,
   Bars3Icon,
   XMarkIcon,
+  ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/24/outline"
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react"
+import { Button } from "@heroui/react"
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const navigation = [{ name: "Overview", href: "#", current: false }]
+  const navigation = [{ name: "Overview", href: "#", current: true }]
 
   return (
     <nav className="bg-white border-gray-100">
@@ -31,7 +34,7 @@ export default function Navbar() {
             <div className="hidden md:block ml-10">
               <div className="flex items-baseline space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className={`px-3 py-2 rounded-md text-bold font-bold transition-colors duration-200 ${
@@ -39,7 +42,7 @@ export default function Navbar() {
                     }`}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -61,6 +64,15 @@ export default function Navbar() {
 
           {/* Right side actions */}
           <div className="flex items-center space-x-4">
+            {/* Chat Button using Hero UI Button */}
+            <Button
+              variant="light"
+              className="flex items-center gap-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200 rounded-md px-3 py-1"
+            >
+              <ChatBubbleLeftEllipsisIcon className="w-5 h-5" />
+              Chat
+            </Button>
+
             {/* Notifications */}
             <button className="p-2 rounded-md transition-colors duration-200 text-gray-400 hover:text-gray-500 hover:bg-gray-100">
               <BellIcon className="h-5 w-5" />
@@ -77,32 +89,50 @@ export default function Navbar() {
             <Menu as="div" className="relative">
               <MenuButton className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span className="sr-only">Open user menu</span>
-                <Image className="h-8 w-8 rounded-full" src="/navhead.jfif" alt="User avatar" width={32} height={32} />
+                <Image
+                  className="h-8 w-8 rounded-full"
+                  src="/navhead.jpg"
+                  alt="User avatar"
+                  width={32}
+                  height={32}
+                />
               </MenuButton>
               <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-white">
                 <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm transition-colors duration-200 text-gray-700 hover:bg-gray-100"
-                  >
-                    Your Profile
-                  </a>
+                  {({ active }) => (
+                    <Link
+                      href="#"
+                      className={`block px-4 py-2 text-sm transition-colors duration-200 ${
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700"
+                      }`}
+                    >
+                      Your Profile
+                    </Link>
+                  )}
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm transition-colors duration-200 text-gray-700 hover:bg-gray-100"
-                  >
-                    Settings
-                  </a>
+                  {({ active }) => (
+                    <Link
+                      href="#"
+                      className={`block px-4 py-2 text-sm transition-colors duration-200 ${
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700"
+                      }`}
+                    >
+                      Settings
+                    </Link>
+                  )}
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm transition-colors duration-200 text-gray-700 hover:bg-gray-100"
-                  >
-                    Sign out
-                  </a>
+                  {({ active }) => (
+                    <Link
+                      href="#"
+                      className={`block px-4 py-2 text-sm transition-colors duration-200 ${
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700"
+                      }`}
+                    >
+                      Sign out
+                    </Link>
+                  )}
                 </MenuItem>
               </MenuItems>
             </Menu>
@@ -137,7 +167,7 @@ export default function Navbar() {
 
               {/* Mobile Navigation */}
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
@@ -145,7 +175,7 @@ export default function Navbar() {
                   }`}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

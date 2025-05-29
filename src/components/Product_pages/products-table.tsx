@@ -49,7 +49,7 @@ export default function ProductsTable() {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false)
 
-  const filterOptions = ["All Products", "Active Products", "Draft Products", "Archived Products"]
+  const filterOptions = ["All Products", "Active Products", "Draft Products", "Archived Products", "Orders"]
   const sortOptions = ["Default", "Name A-Z", "Name Z-A", "Price Low-High", "Price High-Low", "Stock Low-High"]
 
   const [products, setProducts] = useState<Product[]>([

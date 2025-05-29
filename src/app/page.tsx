@@ -10,8 +10,9 @@ import VisitorsChart from "@/components/landing_page/visitorchat"
 import Leaderboard from "@/components/leaderboard/leader"
 import Sidebar from "@/components/landing_page/Sidebar"
 import ProductsTable from "@/components/Product_pages/products-table"
-import OrdersTable from "@/components/Order_pages/orders-table"
+
 import Navbar from "@/components/navbar"
+import ForServer from "@/components/fororderserver"
 
 interface HomeProps {
   searchParams: Promise<{ tab?: string }>
@@ -105,12 +106,7 @@ export default async function Home({ searchParams }: HomeProps) {
           )}
           {activeTab === "Order" && (
             <div className="space-y-4 sm:space-y-6">
-              <OrdersTable
-                searchQuery={""}
-                onToggleSelection={() => {
-                  console.log("Toggle selection")
-                }}
-              />
+             <ForServer/>
             </div>
           )}
         </main>

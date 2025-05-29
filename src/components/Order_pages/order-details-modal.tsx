@@ -97,9 +97,7 @@ export default function OrderDetailsModal({ isOpen, onClose }: OrderDetailsModal
                 <button className="hidden xs:inline-block px-2 py-1 text-xs sm:text-sm font-medium rounded-md border transition-colors duration-200 border-gray-300 text-gray-700 hover:bg-gray-50">
                   Refund items
                 </button>
-                <button className="px-2 py-1 text-xs sm:text-sm font-medium rounded-md border transition-colors duration-200 border-gray-300 text-gray-700 hover:bg-gray-50">
-                  {window.innerWidth < 400 ? "Actions" : "More actions"}
-                </button>
+                
               </div>
             </div>
 
@@ -120,7 +118,7 @@ export default function OrderDetailsModal({ isOpen, onClose }: OrderDetailsModal
                     <div className="flex items-center mb-2 sm:mb-0 w-full sm:w-auto">
                       <div className="h-10 w-10 bg-gray-200 rounded-md mr-2 flex-shrink-0 relative">
                         <Image
-                          src="/t1.jfif"
+                          src="/t1.jpg"
                           alt="Product"
                           className="rounded-md object-cover"
                           fill

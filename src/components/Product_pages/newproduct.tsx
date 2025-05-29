@@ -70,9 +70,9 @@ export default function NewProductModal({ isOpen, onClose, onSave }: NewProductM
 
   // Images state
   const [images, setImages] = useState([
-    { id: 1, src: "/t2.jfif", position: 1, isCover: true },
-    { id: 2, src: "/t3.jfif", position: 2, isCover: false },
-    { id: 3, src: "/t4.jfif", position: 3, isCover: false },
+    { id: 1, src: "/t2.jpg", position: 1, isCover: true },
+    { id: 2, src: "/t3.jpg", position: 2, isCover: false },
+    { id: 3, src: "/t4.jpg", position: 3, isCover: false },
   ])
 
   const tabs = ["Information", "Images", "Pricing", "Inventory", "Shipping"]
