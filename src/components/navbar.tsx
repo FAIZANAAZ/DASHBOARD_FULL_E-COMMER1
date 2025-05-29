@@ -187,7 +187,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors duration-200 min-h-[44px] flex items-center ${
+                  className={` px-3 py-2.5 rounded-md text-base font-medium transition-colors duration-200 min-h-[44px] flex items-center ${
                     item.current ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                   }`}
                 >
