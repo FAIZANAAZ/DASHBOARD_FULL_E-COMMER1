@@ -70,7 +70,7 @@ export default function Sidebar({ activeTab }: { activeTab: string }) {
       {/* Mobile Menu Toggle Button - Only Arrow */}
       <Button
         variant="light"
-        className="fixed left-4 top-4 z-[60] sm:hidden bg-white border border-gray-200 shadow-sm min-w-10 h-10 p-0"
+        className="fixed left-0 top-0 z-[60] sm:hidden  bg-yellow-300 rounded-1xl  border border-gray-200 shadow-sm min-w-8 h-14 p-0"
         onClick={toggleMobileMenu}
       >
         <ChevronRightIcon className={`w-5 h-5 transition-transform ${mobileMenuOpen ? "rotate-180" : ""}`} />
