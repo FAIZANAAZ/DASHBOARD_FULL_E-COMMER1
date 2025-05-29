@@ -70,6 +70,7 @@ export default function Sidebar({
 
   return (
     <>
+    
       {/* Mobile Menu Toggle Button */}
       <Button
         variant="light"
@@ -154,7 +155,7 @@ export default function Sidebar({
 
       {/* Full Sidebar for Mobile (open) and Desktop */}
       <aside
-        className={`fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-200 p-4 z-50 transition-transform duration-300 ease-in-out overflow-y-auto ${
+        className={`fixed left-0 sm:mt-[60px] h-screen w-64 bg-white border-r border-gray-200 p-4 z-50 transition-transform duration-300 ease-in-out overflow-y-auto ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:top-3 md:h-[calc(100vh-4rem)]`}
       >
